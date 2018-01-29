@@ -18,33 +18,31 @@ namespace Party
         public Form1()
         {
             InitializeComponent();
-            dinnerParty = new DinnerParty() {  };
-            dinnerParty.SetHealthyOption(false);
-            dinnerParty.CalculateCostOfDecoration(true);
+            dinnerParty = new DinnerParty((int)numericUpDown1.Value, Healthy.Checked, Fancy.Checked);         
             DisplayDinnerPartyCost();
         }
 
         private void DisplayDinnerPartyCost()
         {
-            decimal Cost = dinnerParty.CalculateCost(Healthy.Checked);
+            decimal Cost = dinnerParty.Cost;
             costLabel.Text = Cost.ToString("c");
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            dinnerParty.SetPartyOptions((int)numericUpDown1.Value, Fancy.Checked);
+            dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
             DisplayDinnerPartyCost();
         }
 
         private void Fancy_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerParty.CalculateCostOfDecoration(Fancy.Checked);
+            dinnerParty.FancyDecorations = Fancy.Checked;
             DisplayDinnerPartyCost();
         }
 
         private void Healthy_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerParty.SetHealthyOption(Healthy.Checked);
+            dinnerParty.HealtyOptions = Healthy.Checked;
             DisplayDinnerPartyCost();
         }
     }
