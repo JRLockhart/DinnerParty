@@ -10,11 +10,42 @@ using System.Windows.Forms;
 
 namespace Party
 {
+   
     public partial class Form1 : Form
     {
+
+        DinnerParty dinnerParty;
         public Form1()
         {
             InitializeComponent();
+            dinnerParty = new DinnerParty() { NumberOfPeople = 5 };
+            dinnerParty.SetHealthyOption(false);
+            dinnerParty.CalculateCostOfDecoration(true);
+            DisplayDinnerPartyCost();
+        }
+
+        private void DisplayDinnerPartyCost()
+        {
+            decimal Cost = dinnerParty.CalculateCost(Healthy.Checked);
+            costLabel.Text = Cost.ToString("c");
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
+            DisplayDinnerPartyCost();
+        }
+
+        private void Fancy_CheckedChanged(object sender, EventArgs e)
+        {
+            dinnerParty.CalculateCostOfDecoration(Fancy.Checked);
+            DisplayDinnerPartyCost();
+        }
+
+        private void Healthy_CheckedChanged(object sender, EventArgs e)
+        {
+            dinnerParty.SetHealthyOption(Healthy.Checked);
+            DisplayDinnerPartyCost();
         }
     }
 }
