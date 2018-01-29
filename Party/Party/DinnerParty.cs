@@ -9,10 +9,21 @@ namespace Party
     class DinnerParty
     {
         public const int CostOfFoodPerPerson = 25;
-        public int NumberOfPeople;
+        int numberOfPeople;
+        
         public decimal CostOfBeveragePerPerson;
         public decimal CostOfDecorations;
         
+        public void SetPartyOptions(int people, bool fancy)
+        {
+            numberOfPeople = people;
+            CalculateCostOfDecoration(fancy);
+        }
+
+        public int GetNumberOfPeople()
+        {
+            return numberOfPeople;
+        }
         public void SetHealthyOption(bool healthyOption)
         {
             if (healthyOption)
@@ -29,18 +40,18 @@ namespace Party
         {
             if (fancy)
             {
-                CostOfDecorations = (NumberOfPeople * 15.00M) + 50.00M;
+                CostOfDecorations = (numberOfPeople * 15.00M) + 50.00M;
             }
             else
             {
-                CostOfDecorations = (NumberOfPeople * 7.50M) + 15.00M;
+                CostOfDecorations = (numberOfPeople * 7.50M) + 15.00M;
             }
         }
 
         public decimal CalculateCost(bool healthyOption)
         {
             decimal totalCost = CostOfDecorations +
-                ((CostOfBeveragePerPerson + CostOfFoodPerPerson) + NumberOfPeople);
+                ((CostOfBeveragePerPerson + CostOfFoodPerPerson) * numberOfPeople);
             if (healthyOption)
             {
                 return totalCost * .95M;

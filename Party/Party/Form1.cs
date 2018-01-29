@@ -18,7 +18,7 @@ namespace Party
         public Form1()
         {
             InitializeComponent();
-            dinnerParty = new DinnerParty() { NumberOfPeople = 5 };
+            dinnerParty = new DinnerParty() {  };
             dinnerParty.SetHealthyOption(false);
             dinnerParty.CalculateCostOfDecoration(true);
             DisplayDinnerPartyCost();
@@ -32,7 +32,7 @@ namespace Party
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
+            dinnerParty.SetPartyOptions((int)numericUpDown1.Value, Fancy.Checked);
             DisplayDinnerPartyCost();
         }
 
