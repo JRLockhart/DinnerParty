@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Party
 {
-    class DinnerParty
+    class DinnerParty : Party
     {
-        public const int CostOfFoodPerPerson = 25;
-        public int NumberOfPeople { get; set; }
-        public bool FancyDecorations { get; set; }
+       
         public bool HealtyOptions { get; set; }
         
         public DinnerParty(int numberOfPeople, bool healthyOption, bool fancyDecorations)
@@ -19,20 +17,7 @@ namespace Party
             FancyDecorations = fancyDecorations;
             HealtyOptions = healthyOption;
         }
-        
-        private decimal CalculateCostOfDecoration()
-        {
-            decimal costOfDecorations;
-            if (FancyDecorations)
-            {
-                costOfDecorations = (NumberOfPeople * 15.00M) + 50.00M;
-            }
-            else
-            {
-                costOfDecorations = (NumberOfPeople * 7.50M) + 15.00M;
-            }
-            return costOfDecorations;
-        }
+              
 
         private decimal CalculateCostOfBeveragesPerPerson()
         {
@@ -47,12 +32,11 @@ namespace Party
             }
             return costOfBeverages;
         }
-
-        public decimal Cost
+        override public decimal Cost
         {
             get
             {
-                decimal totalCost = CalculateCostOfDecoration();
+                decimal totalCost = base.Cost;
                 totalCost += ((CalculateCostOfBeveragesPerPerson() + CostOfFoodPerPerson) * NumberOfPeople);
                 if (HealtyOptions)
                 {
