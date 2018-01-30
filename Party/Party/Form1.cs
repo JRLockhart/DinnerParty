@@ -26,23 +26,23 @@ namespace Party
         {
             decimal Cost = dinnerParty.Cost;
             costLabel.Text = Cost.ToString("c");
-        }
+        }       
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
-            DisplayDinnerPartyCost();
-        }
-
-        private void Fancy_CheckedChanged(object sender, EventArgs e)
+        private void Fancy_CheckedChanged_1(object sender, EventArgs e)
         {
             dinnerParty.FancyDecorations = Fancy.Checked;
             DisplayDinnerPartyCost();
         }
 
-        private void Healthy_CheckedChanged(object sender, EventArgs e)
+        private void Healthy_CheckedChanged_1(object sender, EventArgs e)
         {
             dinnerParty.HealtyOptions = Healthy.Checked;
+            DisplayDinnerPartyCost();
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+            dinnerParty.NumberOfPeople = (int)numericUpDown1.Value;
             DisplayDinnerPartyCost();
         }
     }
